@@ -128,7 +128,7 @@ function invertirArreglo(arr) {
 
   console.log("\n\n")
 
-  console.log("..................... Fifth exercise ...............................\n\n");
+  console.log("..................... Fifth exercise .......................................................................\n\n");
   
 //   5.- Nuevos jugadores (50 ptos).
 
@@ -162,68 +162,72 @@ function invertirArreglo(arr) {
 //   5.3. crea un equipo con los objetos de entrenador y estudiantes demostrando el
 //   funcionamiento de jerarquía.
 
-// Creacion de la Clase Padre ----> Clase Persona <--------- 
+
 
 // Programacion orientada a Objetos 
+// Creacion de la Clase Padre ----> Clase Persona <--------- 
 
-class Persona {
+class Persona { 
     constructor(nombre, apellido, edad) {
       this.nombre = nombre;
-      this.apellido = apellido;
+      this.apellido = apellido; // <---------- declarando las variables del constructor de la clase Padre
       this.edad = edad;
     }
   
-    getDetalles() {
-      return `Nombre: ${this.nombre}\napellido: ${this.apellido}\nEdad: ${this.edad}`;
+    getDetalles() { //creando el metodo getDetalles 
+      return `Nombre: ${this.nombre}\napellido: ${this.apellido}\nEdad: ${this.edad}`; //retorna el valor de cada atributo creado en el constructor
     }
   }
   
-  class Jugador extends Persona {
+  class Jugador extends Persona { // <--------  clase hija que hereda atributos de la clase padre Persona 
     constructor(nombre, apellido, edad, posicion) {
       super(nombre, apellido, edad);
-      this.posicion = posicion;
+      this.posicion = posicion; 
     }
   
     getDetalles() {
-      return `${super.getDetalles()}\nPosicion de juego: ${this.posicion}`;
+      return `${super.getDetalles()}\nPosicion de juego: ${this.posicion}`; //usamos la palabra reservada de javaScript llamada super para acceder a los atributos de la clase padre Persona, de esta manera ahorramos algunas lineas de codigo y no debemos crear nuevamente atributos que ya han sido creados con anterioridad esto funciona especialmente cuando las clases tienen funciones con atributos que son parecidos y no es necesario volver a crearlos nuevamente, por eso usamos el metodo super para acceder a estos valores y no crearlos denuevo ya que logicamente un jugador vendria siendo una -> Persona <- y tambien el entrenador seria una -> Persona <-
     }
   }
   
-  class Entrenador extends Persona {
+  class Entrenador extends Persona { //clase hija Entrenador que hereda atributos de la clase padre Persona
     constructor(nombre, apellido, edad, yearsOfExperience, idFederacion) {
-      super(nombre, apellido, edad);
+      super(nombre, apellido, edad); //gracias a super no es necesario especificar nuevamente el this.edad = edad | this.apellido = apellido
       this.yearsOfExperience = yearsOfExperience;
       this.idFederacion = idFederacion || Math.floor(Math.random() * 90000) + 10000;
     }
+    
+    // como se puede notar solo debemos agregar los atributos o valores como se le quiera llamar que queremos agregar ya que el entrenador tambien tiene un nombre, apellido y una edad ya que es una -> Persona <-  PERO tiene informacion que debemos añadir nosotros 
   
     getDetalles() {
       return `${super.getDetalles()}\nAños de experiencia: ${this.yearsOfExperience}\nID de federación: ${this.idFederacion}`;
     }
   }
   
-  class Equipo {
+  class Equipo { // <--------------- creacion clase equipo
     constructor(entrenador, jugadores) {
       this.entrenador = entrenador;
       this.jugadores = jugadores;
     }
   
-    getDetalles() {
+    getDetalles() { // metodo getDetalles que muestra los detalles por consola, el diseño lo hice asi solo para que en consola sea mejor visualmente
+
       let detallesEquipo = '';
-  
+        
       detallesEquipo += '------------------------------- Detalles del Equipo ---------------------------------------------\n';
-      detallesEquipo += '\n------ Detalles del entrenador -----\n';
-      detallesEquipo += this.entrenador.getDetalles() + '\n';
+      detallesEquipo += '\n------ Detalles del entrenador -----\n'; // el --> \n <---- es una expresion regular que añade un salto de linea
+      detallesEquipo += this.entrenador.getDetalles() + '\n'; //esto es solo diseño que quise personalizar para que se vea mejor en consola
   
-      this.jugadores.forEach((jugador, index) => {
+      this.jugadores.forEach((jugador, index) => { 
         detallesEquipo += `-------------------                                             jugador  ${index + 1}                                                    -------------------\n`;
         detallesEquipo += jugador.getDetalles() + '\n';
       });
   
-      console.log(detallesEquipo);
+      console.log(detallesEquipo); //imprimiendo por consola las instancias
     }
-  }
+  } // aqui se cierra el metodo getDetalles
   
-  let jugadores = [
+  let jugadores = [ //arreglo de jugadores de ejemplo 
     new Jugador("Fabian", "Muñoz", 20, "Portero"),
     new Jugador("Scarlett", "Fontt", 20, "Defensa"),
     new Jugador("Leticia", "Pailahueque", 23, "Medio"),
@@ -233,9 +237,9 @@ class Persona {
   
   let entrenador = new Entrenador("Kevin", "Fontt", 40, 22); // <------------ yo 8)
   
-  let equipo = new Equipo(entrenador, jugadores);
+  let equipo = new Equipo(entrenador, jugadores); //creacion de una nueva instancia de equipo con el entrenador (yo) y los jugadores.
   
-  equipo.getDetalles();
+  equipo.getDetalles(); //llamada de metodo 
   
   
   
