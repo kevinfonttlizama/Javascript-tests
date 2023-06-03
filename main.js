@@ -240,8 +240,53 @@ class Persona {
   let equipo = new Equipo(entrenador, jugadores); //creacion de una nueva instancia de equipo con el entrenador (yo) y los jugadores.
   
   equipo.getDetalles(); //llamada de metodo 
+
+  console.log("\n\n")
+
+
+console.log("..................... Bonus exercise xD ...............................\n\n");
+
+// Ejercicio bonus - Convertir caracteres a mayúsculas. (15 ptos).
+// Diseñar un código que logre convertir caracteres a mayúsculas hasta encontrar un punto, solo
+// los caracteres previos al Primer punto el resto se quedan en minúsculas, muestra en consola el
+// antes y el después.
+// Ejemplo: entrada: www.techacademy.com
+// salida: WWW.techacademy.com
+
+
+function convertirAMayusculas(string) { 
+    let nuevaCadena = ''; //string a recorrer en nuestra funcion
+    let puntoEncontrado = false; //cuando sea true se detendra y solo pondra en mayusculas los caracteres que recorrio en nuestro bucle hasta que encuentre el punto
   
+    for (let i = 0; i < string.length; i++) { //bucle que recorre el total de caracteres de nuestra variable string
+      if (string[i] === '.') { //si el caracter que esta recorriendo -> i <- en el arreglo de nuestro bucle for es estrictamente igual a un punto -> . <- la variable puntoEncontrado es igual a True y ya no es false  
+        puntoEncontrado = true;
+      }
   
+      if (!puntoEncontrado) { //recordar que esta variable es de tipo boolean y esta iniciada en FALSE
+        nuevaCadena += string[i].toUpperCase(); //toUpperCase es el metodo o funcion de javaScript que nos convierte los caracteres de miniscula a mayusculas 
+      } else {
+        nuevaCadena +=  string[i]; 
+      }
+    }
+  
+    return nuevaCadena; 
+  }
+  
+  // Ejemplo de uso
+  let entrada = 'holaaaaaaaa amigos de escueladeinternet.mx   :D'; //la consola pone todo en mayuscula menos el -> mx <- por que nuestro bucle for reconoce el punto 
+  let salida = convertirAMayusculas(entrada); //llamando a la funcion dandole el atributo entrada que seria la cadena  holaaaaaaaa amigos de escueladeinternet.mx   :D
+  
+  console.log('Antes:', entrada);
+  console.log('Después:', salida);
+  
+  console.log("\n\n")
+
+  
+  //con esto tendriamos finalizados todos los ejercicios del examen de JavaScript de nuestros amigos de escueladeinternet.mx gracias por leer esto y que tengan un excelente dia. 
+  //Resolved with love <3 and three cups of coffee by : Kevin Fontt (arthas_dk)
+  
+
   
 
   
