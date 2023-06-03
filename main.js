@@ -90,6 +90,42 @@ console.log("\n\n")
 
 console.log("..................... Fourth exercise ...............................\n\n");
 
+function invertirArreglo(arr) {
+    console.log("Arreglo original:", arr);
+  
+    let arrInvertido = [];
+    for (var i = arr.length - 1; i >= 0; i--) {
+      arrInvertido.push(arr[i]);
+    }
+    console.log("Arreglo invertido:", arrInvertido);
+  }
+  
+  let arreglo = [23, 5, 34, 56, 98, "cadena", 7];
+  invertirArreglo(arreglo);
+
+// --------------- metodo arr.reverse --------------------------------------
+
+//tambien podemos usar el metodo especial .reverse para ahorrarnos unas lineas de codigo y evitar construir un bucle for
+//descomenta la funcion y pruebalo si lo deseas, el resultado es el mismo
+
+
+// function invertirArreglo(arr) {
+//     console.log("Arreglo original:", arr);
+  
+//     var arrInvertido = arr.reverse();
+//     console.log("Arreglo invertido:", arrInvertido);
+
+//     arr.reverse();
+//   }
+  
+//   var arreglo = [23, 5, 34, 56, 98, "cadena", 7];
+//   invertirArreglo(arreglo);
+  
+
+
+  console.log("\n\n")
+  
+
 
 
 
