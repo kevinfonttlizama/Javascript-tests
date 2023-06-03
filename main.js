@@ -8,6 +8,7 @@
 // Ejemplo:
 // Primera iteración: numeroGenerado = 5 // el número es impar
 // Segunda iteración: numeroGenerado = 12 // el número es par
+
 console.log("\n\n ############### Examen practico de javaScript de www.escueladeinternet.mx Resolved by: Kevin Andres Fontt lizama (arthas_dk) ############# \n\n")
 
 console.log("..................... First exercise ...............................\n\n")
@@ -19,13 +20,15 @@ for (let i = 1; i <= 5; i++) { //bucle for que nos da un total de 5 iteraciones 
     //condicionales if para mostrar por consola si el numero es par o impar 
 
     if (esPar) {
-      console.log(`Iteración ${i}: Número generado = ${numeroGenerado} <-- El número es par`); //<----- muestra por consola si el numero es par concatenamos la variable i dentro de nuestra cadena usando el signo de dolar $ y luego el nombre de la variable
+      console.log(`Iteración ${i}: Número generado = ${numeroGenerado} <-- El número es par`); //<----- muestra por consola si el numero es par concatenamos la variable --> i <-- dentro de nuestra cadena usando el signo de dolar $ y luego el nombre de la variable
     } else {
       console.log(`Iteración ${i}: Número generado = ${numeroGenerado} <-- El número es impar`); //aplicamos la misma logica solo que imprimimos por consola que el valor es impar concatenando el resultado del numero aleatorio 
     }
   }
   
     console.log("\n\n")
+
+
 // ------------------------- Ejercicio II  ------------------------------------------------------------------------- 
 
 //  2.- Múltiplos de un número dado (10 ptos).
@@ -60,7 +63,7 @@ const prompt = require('prompt-sync')(); //<---- Se que no lo han pedido pero us
 
 function ejecutarEjercicio3() {
   try {
-    const string = prompt("Ingrese una cadena de texto: ");
+    const string = prompt("Ingrese una cadena de texto: "); 
     const caracterDado = prompt("Ingrese un carácter a buscar: ");
 
     let contador = 0;
@@ -124,6 +127,119 @@ function invertirArreglo(arr) {
 
 
   console.log("\n\n")
+
+  console.log("..................... Fifth exercise ...............................\n\n");
+  
+//   5.- Nuevos jugadores (50 ptos).
+
+//   1. Clase persona con propiedades nombre, apellido y edad
+//   1.1. Crea el método getDetalles() el cual imprimirá en consola los atributos de la
+//   persona.
+//   1.2. El constructor recibe y asigna nombre, apellido y edad a los atributos internos.
+//   2. La clase jugador hereda de persona e incluye la propiedad de posición
+//   2.1. sobreescribir el método getDetalles() para que muestre en consola los detalles
+//   de persona y los de jugador.
+//   2.2. El constructor recibe y asigna posición a los atributos internos.
+//   3. Clase entrenador hereda de persona y agrega años de experiencia y el id de
+//   federación
+//   3.1. Sobreescribir el método getDetalles() para que muestre en consola los detalles
+//   de persona y entrenador.
+//   _______________________________________________________________________________________________
+//   _______________________________________________________________________________________________
+
+//   3.2. El constructor recibe y asigna posición a los atributos internos.
+//   3.3. En el constructor configurar para que si no se recibe un id de federación este
+//   asigne un número aleatorio de 5 dígitos
+//   4. Clase equipo tiene las propiedades de entrenador y jugadores
+//   4.1. El constructor recibe el objeto de director y un arreglo con los jugadores que
+//   pertenecen al equipo (con 3 o 4 jugadores como ejemplo está bien)
+//   4.2. el método getDetalles() mostrar en consola los detalles del entrenador y de los
+//   jugadores.
+//   5. ¡Probemos!
+//   5.1. crea un arreglo de 4 jugadores con diferentes nombres, edades y posición
+//   (Portero, Defensa , Medio y Delantero).
+//   5.2. crea un objeto de tipo entrenador con su nombre, edad y años de experiencia
+//   5.3. crea un equipo con los objetos de entrenador y estudiantes demostrando el
+//   funcionamiento de jerarquía.
+
+// Creacion de la Clase Padre ----> Clase Persona <--------- 
+
+// Programacion orientada a Objetos 
+
+class Persona {
+    constructor(nombre, apellido, edad) {
+      this.nombre = nombre;
+      this.apellido = apellido;
+      this.edad = edad;
+    }
+  
+    getDetalles() {
+      return `Nombre: ${this.nombre}\napellido: ${this.apellido}\nEdad: ${this.edad}`;
+    }
+  }
+  
+  class Jugador extends Persona {
+    constructor(nombre, apellido, edad, posicion) {
+      super(nombre, apellido, edad);
+      this.posicion = posicion;
+    }
+  
+    getDetalles() {
+      return `${super.getDetalles()}\nPosicion de juego: ${this.posicion}`;
+    }
+  }
+  
+  class Entrenador extends Persona {
+    constructor(nombre, apellido, edad, yearsOfExperience, idFederacion) {
+      super(nombre, apellido, edad);
+      this.yearsOfExperience = yearsOfExperience;
+      this.idFederacion = idFederacion || Math.floor(Math.random() * 90000) + 10000;
+    }
+  
+    getDetalles() {
+      return `${super.getDetalles()}\nAños de experiencia: ${this.yearsOfExperience}\nID de federación: ${this.idFederacion}`;
+    }
+  }
+  
+  class Equipo {
+    constructor(entrenador, jugadores) {
+      this.entrenador = entrenador;
+      this.jugadores = jugadores;
+    }
+  
+    getDetalles() {
+      let detallesEquipo = '';
+  
+      detallesEquipo += '------------------------------- Detalles del Equipo ---------------------------------------------\n';
+      detallesEquipo += '\n------ Detalles del entrenador -----\n';
+      detallesEquipo += this.entrenador.getDetalles() + '\n';
+  
+      this.jugadores.forEach((jugador, index) => {
+        detallesEquipo += `-------------------                                             jugador  ${index + 1}                                                    -------------------\n`;
+        detallesEquipo += jugador.getDetalles() + '\n';
+      });
+  
+      console.log(detallesEquipo);
+    }
+  }
+  
+  let jugadores = [
+    new Jugador("Fabian", "Muñoz", 20, "Portero"),
+    new Jugador("Scarlett", "Fontt", 20, "Defensa"),
+    new Jugador("Leticia", "Pailahueque", 23, "Medio"),
+    new Jugador("Mailo", "Gato", 3, "Delantero"), // <---- mi otro gato (es blanco entero)
+    new Jugador("Caos", "Gata", 3, "Delantera") // <---- mi gata (se porta mal)
+  ];
+  
+  let entrenador = new Entrenador("Kevin", "Fontt", 40, 22); // <------------ yo 8)
+  
+  let equipo = new Equipo(entrenador, jugadores);
+  
+  equipo.getDetalles();
+  
+  
+  
+
   
 
 
